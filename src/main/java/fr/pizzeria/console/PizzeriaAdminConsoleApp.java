@@ -29,44 +29,44 @@ public class PizzeriaAdminConsoleApp {
 	 */
 	public static void main(String[] args) {
 		initPizza();
-		System.out.println("***** Pizzeria Administration *****");
 
-		System.out.println("1. Lister les pizzas");
-		System.out.println("2. Ajouter une nouvelle pizza");
-		System.out.println("3. Mettre à jour une pizza");
-		System.out.println("4. Supprimer une pizza");
-		System.out.println("99. Sortir");
+		int choixPizza = 0;
+		do {
 
-		Scanner choix = new Scanner(System.in);
-		int choixPizza = choix.nextInt();
+			System.out.println("***** Pizzeria Administration *****");
 
-		switch (choixPizza) {
-		case 1:
-			System.out.println("Liste des pizzas");
-			listerLesPizza();
-			main(args);
-			break;
-		case 2:
-			System.out.println("Ajout d’une nouvelle pizza");
-			ajoutPizza();
-			main(args);
-			break;
-		case 3:
-			System.out.println("Mise à jour d’une pizza");
-			main(args);
-			break;
-		case 4:
-			System.out.println("Suppression d’une pizza");
-			main(args);
-			break;
-		case 99:
-			System.out.println("Aurevoir :-(");
-			break;
-		default:
-			System.out.println("Veuillez choisir un chiffre valide !");
-			main(args);
-			break;
-		}
+			System.out.println("1. Lister les pizzas");
+			System.out.println("2. Ajouter une nouvelle pizza");
+			System.out.println("3. Mettre à jour une pizza");
+			System.out.println("4. Supprimer une pizza");
+			System.out.println("99. Sortir");
+
+			Scanner choix = new Scanner(System.in);
+			choixPizza = choix.nextInt();
+
+			switch (choixPizza) {
+			case 1:
+				System.out.println("Liste des pizzas");
+				listerLesPizza();
+				break;
+			case 2:
+				System.out.println("Ajout d’une nouvelle pizza");
+				ajoutPizza();
+				break;
+			case 3:
+				System.out.println("Mise à jour d’une pizza");
+				majPizza();
+				break;
+			case 4:
+				System.out.println("Suppression d’une pizza");
+				SupprPizza();
+				break;
+			default:
+				System.out.println("Veuillez choisir un chiffre valide !");
+				break;
+			}
+		} while (choixPizza != 99);
+		System.out.println("Aurevoir :-(");
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class PizzeriaAdminConsoleApp {
 	public static void listerLesPizza() {
 		for (int i = 0; i < listePizza.length; i++) {
 
-			if (listePizza[i] != null) {
+			if (listePizza[i] != null && !listePizza[i][1].isEmpty()) {
 
 				// for (int j = 0; j < listePizza[i].length; j++) {
 				// System.out.print(listePizza[i][j] + " ");
@@ -89,6 +89,9 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("");
 	}
 
+	/**
+	 * 
+	 */
 	public static void ajoutPizza() {
 
 		System.out.println("Veuillez saisir le code");
@@ -97,22 +100,46 @@ public class PizzeriaAdminConsoleApp {
 
 		System.out.println("Veuillez saisir le nom (sans espace)");
 		Scanner nom = new Scanner(System.in);
-		String nomPizza = code.next();
+		String nomPizza = nom.next();
 
 		System.out.println("Veuillez saisir le prix");
 		Scanner prix = new Scanner(System.in);
-		double prixPizza = code.nextDouble();
+		String prixPizza = prix.next();
 
 		for (int i = 0; i < listePizza.length; i++) {
 
 			if (listePizza[i] == null) {
 
-				listePizza[i] = new String[] {Integer.toString(i) , codePizza, nomPizza, Double.toString(prixPizza)};
+				listePizza[i] = new String[] { Integer.toString(i), codePizza, nomPizza, prixPizza };
 
 				System.out.println("Pizza Ajouté !");
 				System.out.println("");
 				break;
 			}
 		}
+	}
+
+	
+
+	/**
+	 * 
+	 */
+	public static void SupprPizza() {
+		listerLesPizza();
+		System.out.println("Veuillez Choisir la pizza à supprimer");
+		System.out.println("(99 pour abandonner)");
+		Scanner code = new Scanner(System.in);
+		String codePizza = code.next();
+
+		for (int i = 0; i < listePizza.length; i++) {
+			if (codePizza.equals(listePizza[i][1])) {
+				listePizza[i] = new String[] {"","","",""};
+				System.out.println("Pizza Supprimée !");
+				break;
+			}
+		}
+
+		System.out.println("");
+
 	}
 }
