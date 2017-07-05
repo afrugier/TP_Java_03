@@ -26,6 +26,10 @@ public class PizzeriaAdminConsoleApp {
 
 	/**
 	 * @param args
+	 * 
+	 *            Affiche le menu de la pizzeria Gére les different choix de
+	 *            menu
+	 * 
 	 */
 	public static void main(String[] args) {
 		initPizza();
@@ -61,16 +65,17 @@ public class PizzeriaAdminConsoleApp {
 				System.out.println("Suppression d’une pizza");
 				SupprPizza();
 				break;
+			case 99:
+				System.out.println("Aurevoir :-(");
+				break;
 			default:
-				System.out.println("Veuillez choisir un chiffre valide !");
 				break;
 			}
 		} while (choixPizza != 99);
-		System.out.println("Aurevoir :-(");
 	}
 
 	/**
-	 * 
+	 * Fait la liste des pizzas situer dans le tableau listePizza
 	 */
 	public static void listerLesPizza() {
 		for (int i = 0; i < listePizza.length; i++) {
@@ -90,7 +95,7 @@ public class PizzeriaAdminConsoleApp {
 	}
 
 	/**
-	 * 
+	 * Ajoute une pizza au tableau listePizza
 	 */
 	public static void ajoutPizza() {
 
@@ -120,7 +125,7 @@ public class PizzeriaAdminConsoleApp {
 	}
 
 	/**
-	 * 
+	 * Modifie une pizza du tableau listePizza
 	 */
 	public static void majPizza() {
 		listerLesPizza();
@@ -128,32 +133,34 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("(99 pour abandonner)");
 		Scanner code = new Scanner(System.in);
 		String codePizza = code.next();
-		
-		System.out.println("Veuillez saisir le code");
-		Scanner newCode = new Scanner(System.in);
-		String newCodePizza = newCode.next();
+		if (!codePizza.equals("99")) {
 
-		System.out.println("Veuillez saisir le nom (sans espace)");
-		Scanner newNom = new Scanner(System.in);
-		String newNomPizza = newNom.next();
+			System.out.println("Veuillez saisir le nouveau code");
+			Scanner newCode = new Scanner(System.in);
+			String newCodePizza = newCode.next();
 
-		System.out.println("Veuillez saisir le prix");
-		Scanner newPrix = new Scanner(System.in);
-		String newPrixPizza = newPrix.next();
-		
-		for (int i = 0; i < listePizza.length; i++) {
-			if (codePizza.equals(listePizza[i][1])) {
-				listePizza[i] = new String[] {Integer.toString(i),newCodePizza,newNomPizza,newPrixPizza};
-				break;
+			System.out.println("Veuillez saisir le nouveau nom (sans espace)");
+			Scanner newNom = new Scanner(System.in);
+			String newNomPizza = newNom.next();
+
+			System.out.println("Veuillez saisir le nouveau prix");
+			Scanner newPrix = new Scanner(System.in);
+			String newPrixPizza = newPrix.next();
+
+			for (int i = 0; i < listePizza.length; i++) {
+				if (codePizza.equals(listePizza[i][1])) {
+					listePizza[i] = new String[] { Integer.toString(i), newCodePizza, newNomPizza, newPrixPizza };
+					break;
+				}
 			}
+			System.out.println("Pizza Modifiée !");
+			System.out.println("");
 		}
-		System.out.println("Pizza Modifiée !");
-		System.out.println("");
 
 	}
 
 	/**
-	 * 
+	 * Supprime une Pizza du tableau listePizza
 	 */
 	public static void SupprPizza() {
 		listerLesPizza();
@@ -164,7 +171,7 @@ public class PizzeriaAdminConsoleApp {
 
 		for (int i = 0; i < listePizza.length; i++) {
 			if (codePizza.equals(listePizza[i][1])) {
-				listePizza[i] = new String[] {"","","",""};
+				listePizza[i] = new String[] { "", "", "", "" };
 				System.out.println("Pizza Supprimée !");
 				break;
 			}
