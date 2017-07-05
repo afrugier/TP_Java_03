@@ -63,7 +63,7 @@ public class PizzeriaAdminConsoleApp {
 				break;
 			case 4:
 				System.out.println("Suppression d’une pizza");
-				SupprPizza();
+				supprPizza();
 				break;
 			case 99:
 				System.out.println("Aurevoir :-(");
@@ -162,7 +162,7 @@ public class PizzeriaAdminConsoleApp {
 	/**
 	 * Supprime une Pizza du tableau listePizza
 	 */
-	public static void SupprPizza() {
+	public static void supprPizza() {
 		listerLesPizza();
 		System.out.println("Veuillez Choisir la pizza à supprimer");
 		System.out.println("(99 pour abandonner)");
