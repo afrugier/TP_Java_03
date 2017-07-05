@@ -119,7 +119,38 @@ public class PizzeriaAdminConsoleApp {
 		}
 	}
 
-	
+	/**
+	 * 
+	 */
+	public static void majPizza() {
+		listerLesPizza();
+		System.out.println("Veuillez Choisir la pizza à modifier");
+		System.out.println("(99 pour abandonner)");
+		Scanner code = new Scanner(System.in);
+		String codePizza = code.next();
+		
+		System.out.println("Veuillez saisir le code");
+		Scanner newCode = new Scanner(System.in);
+		String newCodePizza = newCode.next();
+
+		System.out.println("Veuillez saisir le nom (sans espace)");
+		Scanner newNom = new Scanner(System.in);
+		String newNomPizza = newNom.next();
+
+		System.out.println("Veuillez saisir le prix");
+		Scanner newPrix = new Scanner(System.in);
+		String newPrixPizza = newPrix.next();
+		
+		for (int i = 0; i < listePizza.length; i++) {
+			if (codePizza.equals(listePizza[i][1])) {
+				listePizza[i] = new String[] {Integer.toString(i),newCodePizza,newNomPizza,newPrixPizza};
+				break;
+			}
+		}
+		System.out.println("Pizza Modifiée !");
+		System.out.println("");
+
+	}
 
 	/**
 	 * 
