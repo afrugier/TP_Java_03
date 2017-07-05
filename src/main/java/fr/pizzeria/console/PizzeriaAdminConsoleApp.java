@@ -168,16 +168,18 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("(99 pour abandonner)");
 		Scanner code = new Scanner(System.in);
 		String codePizza = code.next();
+		if (!codePizza.equals("99")) {
 
-		for (int i = 0; i < listePizza.length; i++) {
-			if (codePizza.equals(listePizza[i][1])) {
-				listePizza[i] = new String[] { "", "", "", "" };
-				System.out.println("Pizza Supprimée !");
-				break;
+			for (int i = 0; i < listePizza.length; i++) {
+				if (codePizza.equals(listePizza[i][1])) {
+					listePizza[i] = new String[] { "", "", "", "" };
+					System.out.println("Pizza Supprimée !");
+					break;
+				}
 			}
+
+			System.out.println("");
+
 		}
-
-		System.out.println("");
-
 	}
 }
